@@ -67,6 +67,7 @@ const Login=()=>{
     const signupUser= async()=>{
       let response= await API.userSignUp(signup);
       if(response.isSuccess){
+        setError('');
         setSignup(signupInitialValues);
         toggleAccount('login')
       }
@@ -85,7 +86,9 @@ const Login=()=>{
                 account==='login' ?
                     <Wrapper>
                     <TextField label="User Name" variant="standard" />
-                    <TextField id="filled-basic" label="Password" variant="standard" />
+                    <TextField id="filled-basic" label="password" variant="standard" />
+                    {error &&<Error>{error}</Error>}
+
                     <LoginButton variant="contained">Login</LoginButton>
                     <Typography style={{textAlign:'center'}}>OR</Typography>
                     <SignUpButton onClick={handleClick} variant="outlined">Create Account</SignUpButton>
